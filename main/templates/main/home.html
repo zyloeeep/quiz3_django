@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Student List</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 40px 20px;
+            font-family: Verdana, sans-serif;
+            background-color: #f0f7f4;
+            color: #22332d;
+        }
+
+        .page {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            margin: 0 0 6px;
+            color: #1b5e4a;
+        }
+
+        .count {
+            margin: 0 0 24px;
+            color: #5c7a6e;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        th {
+            background-color: #1b5e4a;
+            color: white;
+            text-align: left;
+            padding: 14px;
+        }
+
+        td {
+            padding: 12px 14px;
+            border-bottom: 1px solid #e3ede8;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f7fbf9;
+        }
+
+        tr:hover td {
+            background-color: #dff1e9;
+        }
+
+        .empty {
+            padding: 20px;
+            text-align: center;
+            color: #5c7a6e;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <h1>Student List</h1>
+        <p class="count">Total students: {{ students|length }}</p>
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Course</th>
+                <th>Year</th>
+                <th>Email</th>
+            </tr>
+
+            {% for s in students %}
+            <tr>
+                <td>{{ s.student_id }}</td>
+                <td>{{ s.first_name }} {{ s.last_name }}</td>
+                <td>{{ s.course }}</td>
+                <td>{{ s.year_level }}</td>
+                <td>{{ s.email }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="empty">No students yet. Add some in the admin site.</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
